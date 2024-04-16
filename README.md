@@ -1,6 +1,6 @@
 # go_githubCI
-The following outlines several ideas that should drive a company's CI/CD development.
-A selection of the mentioned ideas is implemented. Those for which more complex infrastructure is required(e.g. binary caches, databases,...) will be omitted.
+This README outlines several ideas that should drive a company's CI/CD development.
+A selection of the mentioned ideas is implemented as POC following a <XXX> identifier referenced in the commit messages. The ideas for which more complex infrastructure is required(e.g. binary caches, databases,...) will be omitted or will appear later once I learn to make them happen using Github goodies.
 
 ## Overall goals
 For me, your company's CI/CD environment has to answer to main questions.
@@ -9,7 +9,7 @@ Two: How are different players interacting with each other and how are they cons
 Get every role in your team the right version of your product fast. Pipeline A delivers arguments in the form of artifacts to pipeline B.
 
 ## Local CI/CD
-Whenever possible enable your team members to run pipelines locally.
+Whenever possible enable your team members to run pipelines locally. <001>
 This will not force them to commit every time they wanna check whether a change passes tests and other criteria.
 This will also reduce the load your shared CI/CD infrastructure needs to handle.
 

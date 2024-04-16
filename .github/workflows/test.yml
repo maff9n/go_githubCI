@@ -1,0 +1,14 @@
+name: "Test"
+on:
+  pull_request:
+  push:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Install nix
+      uses: cachix/install-nix-action@v25
+    - name: Run go tests
+      run: nix develop --command go test
