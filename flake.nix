@@ -7,16 +7,18 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      pipelineCapabilities = import ./.github/nix/default.nix { inherit pkgs; };
+      activatedPipelineCapabilities = with pipelineCapabilities; [
+        start_testing
+      ];
     in
     {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          go
-          gotools
-        ];
-        shellHook = ''
-          go version
-        '';
-      };
+      devShells.${system}.default =
+        pkgs.mkShell {
+          packages = with pkgs; [
+            go
+            gotools
+          ] ++ activatedPipelineCapabilities;
+        };
     };
 }
