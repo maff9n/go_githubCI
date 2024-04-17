@@ -10,5 +10,7 @@ jobs:
       uses: actions/checkout@v4
     - name: Install nix
       uses: cachix/install-nix-action@v25
+    - name: Run go linter
+      run: nix develop --command lint_go
     - name: Run go tests
-      run: nix develop --command start_testing
+      run: nix develop --command test_go

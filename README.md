@@ -41,10 +41,10 @@ clean up after you are done
 
 ## Documentation & testing
 Your CI/CD environment needs documentation and it needs testing.  
-Tweak your team members' workflows so they have room for both.
+Test results should find shelter under version control as well.  
+Tweak your team members' workflows gently so they have a really! hard time avoiding doing both of these things.
 
 ## Outlook
 The following image I found in ["Continous Integration (CI) and Continous Delivery (CD)"](https://link.springer.com/book/10.1007/978-1-4842-9228-0) by Henry van Merode.  
-Whenever I look at it it provides me with the urge to make progress at work.  
-I hope it fits your taste as well.  
+Whenever I look at it it provides me with the urge to make progress.  
 ![A model how steps of maturity from the intelligence, planning, integration, testing, and deployment aspect of your CI/CD environment could look like](./img/model.png)

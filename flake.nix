@@ -9,7 +9,8 @@
       pkgs = import nixpkgs { inherit system; };
       pipelineCapabilities = import ./.github/nix/default.nix { inherit pkgs; };
       activatedPipelineCapabilities = with pipelineCapabilities; [
-        start_testing
+        test_go
+        lint_go
       ];
     in
     {
@@ -18,6 +19,7 @@
           packages = with pkgs; [
             go
             gotools
+            golangci-lint
           ] ++ activatedPipelineCapabilities;
         };
     };
