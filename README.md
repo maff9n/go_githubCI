@@ -10,7 +10,7 @@ Two: How are different players interacting with each other and how are they cons
 Get every role in your team the right version of your product fast. Pipeline A delivers arguments in the form of artifacts to pipeline B.
 
 ## Local CI/CD
-Whenever possible enable your team members to run pipelines locally. <001>  
+Whenever possible enable your team members to run pipeline subtasks locally in a comfortable manner. <001>  
 This will not force them to commit every time they wanna check whether a change passes tests and other criteria.  
 This will also reduce the load your shared CI/CD infrastructure needs to handle.
 
