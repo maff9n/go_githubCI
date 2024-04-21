@@ -27,10 +27,11 @@ jobs:
     - name: Write repository
       env:
         MY_PERSONAL_TOKEN: ${{ secrets.AQUA_TOKEN }}
+        BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
       run: |
         git config --global user.email "marvin1995mann@gmail.com"
         git config --global user.name "ci_bot"
         git remote add gitlab_origin https://"$MY_PERSONAL_TOKEN"@github.com/maff9n/go_githubCI.git
         git add .
         git commit -m "push back from pipeline"
-        git push gitlab_origin HEAD:main -o ci.skip
+        git push gitlab_origin "$BRANCH_NAME" -o ci.skip
