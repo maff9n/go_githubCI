@@ -26,11 +26,11 @@ jobs:
         nix develop --command test_go -o "$test_logs/$GITHUB_SHA"
     - name: Write repository
       env:
-        MY_PERSONAL_TOKEN: ${{ secrets.MY_PERSONAL_TOKEN }}
+        MY_PERSONAL_TOKEN: ${{ secrets.AQUA_TOKEN }}
       run: |
         git config --global user.email "marvin1995mann@gmail.com"
-        git config --global user.name "maff9n"
-        git remote add gitlab_origin https://maff9n:$MY_PERSONAL_TOKEN@github.com:maff9n/go_githubCI.git
+        git config --global user.name "ci_bot"
+        git remote add gitlab_origin https://"$MY_PERSONAL_TOKEN"@github.com/maff9n/go_githubCI.git
         git add .
         git commit -m "push back from pipeline"
         git push gitlab_origin HEAD:main -o ci.skip
