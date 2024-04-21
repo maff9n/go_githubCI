@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      ACCESS_TOKEN: ${{ secrets.AQUA_TOKEN }}
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+      TEST_LOGS: ./.test_logs
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -19,19 +23,15 @@ jobs:
       uses: cachix/install-nix-action@v25
         #    - name: Run go linter
         #      run: nix develop --command lint_go
-    - name: Run go tests
+    - name: Run go tests and create go test results
       run: |
-        test_logs=./.test_logs
-        mkdir -p "$test_logs"
-        nix develop --command test_go -o "$test_logs/$GITHUB_SHA"
-    - name: Write repository
-      env:
-        MY_PERSONAL_TOKEN: ${{ secrets.AQUA_TOKEN }}
-        BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        mkdir -p "$TEST_LOGS"
+        nix develop --command test_go -o "$TEST_LOGS/$GITHUB_SHA"
+    - name: Save go test results to the codebase
       run: |
         git config --global user.email "marvin1995mann@gmail.com"
-        git config --global user.name "ci_bot"
-        git remote add gitlab_origin https://"$MY_PERSONAL_TOKEN"@github.com/maff9n/go_githubCI.git
-        git add .
+        git config --global user.name "CI_Pipeline"
+        git remote add gitlab_origin https://"$ACCESS_TOKEN"@github.com/maff9n/go_githubCI.git
+        git add "$TEST_LOGS"/*
         git commit -m "push back from pipeline"
         git push gitlab_origin "$BRANCH_NAME" -o ci.skip
