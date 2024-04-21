@@ -24,3 +24,11 @@ jobs:
         test_logs=./.test_logs
         mkdir -p "$test_logs"
         nix develop --command test_go -o "$test_logs/$GITHUB_SHA"
+    - name: Writing to repo
+      run: |
+        git config user.email "my-email@email.com"
+        git config user.name "ci-bot"
+        git remote add gitlab_origin https://oauth2:$ACCESS_TOKEN@gitlab.com/path-to-project.git
+        git add .
+        git commit -m "push back from pipeline"
+        git push gitlab_origin HEAD:main -o ci.skip
