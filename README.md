@@ -41,7 +41,7 @@ clean up after you are done
 
 ## Documentation & testing
 Your CI/CD environment needs documentation and it needs testing.  
-Test results should find shelter under version control as well.  
+Test results should get their save space e.g. in the same codebase they are result of. <002>  
 Tweak your team members' workflows gently so they have a really! hard time avoiding doing both of these things.
 
 ## Outlook

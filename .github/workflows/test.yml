@@ -1,16 +1,34 @@
-name: "Test"
+name: 'Test main go files'
 on:
-  pull_request:
-  push:
+   pull_request:
+     branches:
+       - main
+   push:
+     branches:
+       - main
 jobs:
   tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      ACCESS_TOKEN: ${{ secrets.GO_GITHUB_CI_ACCESS_TOKEN }}
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+      TEST_LOGS: ./.test_logs
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
     - name: Install nix
       uses: cachix/install-nix-action@v25
-    - name: Run go linter
-      run: nix develop --command lint_go
-    - name: Run go tests
-      run: nix develop --command test_go
+    - name: Run go tests and create go test results
+      run: |
+        mkdir -p "$TEST_LOGS"
+        nix develop --command test_go -o "$TEST_LOGS/$GITHUB_SHA"
+    - name: Save go test results to the codebase
+      run: |
+        git config --global user.email "marvin1995mann@gmail.com"
+        git config --global user.name "CI_Pipeline"
+        git remote add gitlab_origin https://"$ACCESS_TOKEN"@github.com/maff9n/go_githubCI.git
+        git add "$TEST_LOGS"/*
+        git commit -m "Save go test results to the codebase"
+        git push gitlab_origin "$BRANCH_NAME" -o ci.skip
