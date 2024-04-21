@@ -1,0 +1,8 @@
+{"Time":"2024-04-21T15:52:51.229171852Z","Action":"start","Package":"ci"}
+{"Time":"2024-04-21T15:52:51.230477344Z","Action":"run","Package":"ci","Test":"TestSum"}
+{"Time":"2024-04-21T15:52:51.230502271Z","Action":"output","Package":"ci","Test":"TestSum","Output":"=== RUN   TestSum\n"}
+{"Time":"2024-04-21T15:52:51.230517289Z","Action":"output","Package":"ci","Test":"TestSum","Output":"--- PASS: TestSum (0.00s)\n"}
+{"Time":"2024-04-21T15:52:51.230525484Z","Action":"pass","Package":"ci","Test":"TestSum","Elapsed":0}
+{"Time":"2024-04-21T15:52:51.230535273Z","Action":"output","Package":"ci","Output":"PASS\n"}
+{"Time":"2024-04-21T15:52:51.230758876Z","Action":"output","Package":"ci","Output":"ok  \tci\t0.001s\n"}
+{"Time":"2024-04-21T15:52:51.230779865Z","Action":"pass","Package":"ci","Elapsed":0.002}
