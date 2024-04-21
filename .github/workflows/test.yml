@@ -33,5 +33,14 @@ jobs:
         git config --global user.name "CI_Pipeline"
         git remote add gitlab_origin https://"$ACCESS_TOKEN"@github.com/maff9n/go_githubCI.git
         git add "$TEST_LOGS"/*
-        git commit -m "push back from pipeline"
+        git commit -m "Save go test results to the codebase"
         git push gitlab_origin "$BRANCH_NAME" -o ci.skip
+
+name: 'Hi'
+on: [ push ]
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+      name: greet
+      run: echo "Hello"
