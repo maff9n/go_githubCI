@@ -18,8 +18,6 @@
         pkgs.mkShell {
           packages = with pkgs; [
             go
-            gotools
-            golangci-lint
           ] ++ activatedPipelineCapabilities;
         };
     };
